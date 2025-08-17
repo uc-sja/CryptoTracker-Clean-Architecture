@@ -2,8 +2,8 @@ package com.shikhar.cryptochecker.crypto.presentation.models
 
 import android.icu.text.NumberFormat
 import androidx.annotation.DrawableRes
+import com.shikhar.cryptochecker.core.presentation.util.getDrawableIdForCoin
 import com.shikhar.cryptochecker.crypto.domain.Coin
-import com.shikhar.cryptochecker.util.getDrawableIdForCoin
 import java.util.Locale
 
 data class CoinUi(
