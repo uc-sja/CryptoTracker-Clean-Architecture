@@ -1,4 +1,4 @@
-package com.shikhar.cryptochecker.util
+package com.shikhar.cryptochecker.core.presentation.util
 
 import com.shikhar.cryptochecker.R
 

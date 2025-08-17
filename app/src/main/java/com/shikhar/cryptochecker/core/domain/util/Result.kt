@@ -1,4 +1,4 @@
- package com.shikhar.cryptochecker.util
+package com.shikhar.cryptochecker.core.domain.util
 
 typealias DomainError = Error
 
