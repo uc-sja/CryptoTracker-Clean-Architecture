@@ -1,6 +1,10 @@
-package com.shikhar.cryptochecker.crypto.domain
+package com.shikhar.cryptochecker.crypto.data.networking.dto
 
-data class Coin(
+import kotlinx.serialization.Serializable
+
+
+@Serializable
+data class CoinDto(
     val id: String,
     val rank: Int,
     val name: String,
@@ -9,4 +13,3 @@ data class Coin(
     val priceUsd: Double,
     val changePercent24Hr: Double
 )
-

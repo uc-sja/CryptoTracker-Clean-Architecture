@@ -12,10 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.shikhar.cryptochecker.ui.theme.CryptoTrackerTheme
+import kotlinx.coroutines.channels.Channel
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val channel = Channel<Int>(capacity = Channel.UNLIMITED ) // default = Rendezvous (no buffer)
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
