@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shikhar.cryptochecker.core.domain.util.onError
 import com.shikhar.cryptochecker.core.domain.util.onSuccess
+import com.shikhar.cryptochecker.crypto.data.networking.RemoteCoinDataSource
+import com.shikhar.cryptochecker.crypto.domain.Coin
 import com.shikhar.cryptochecker.crypto.domain.CoinDataSource
 import com.shikhar.cryptochecker.crypto.presentation.models.toCoinUi
 import kotlinx.coroutines.flow.MutableStateFlow
