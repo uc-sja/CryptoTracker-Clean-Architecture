@@ -8,10 +8,12 @@ import com.shikhar.cryptochecker.crypto.data.networking.RemoteCoinDataSource
 import com.shikhar.cryptochecker.crypto.domain.Coin
 import com.shikhar.cryptochecker.crypto.domain.CoinDataSource
 import com.shikhar.cryptochecker.crypto.presentation.models.toCoinUi
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -28,6 +30,11 @@ class CoinListViewModel(
             SharingStarted.WhileSubscribed(5000L),
             CoinListState()
         )
+
+    private val _events = Channel<CoinListEvent>()
+    val events = _events.receiveAsFlow()
+
+
 
     fun onAction(action: CoinListAction) {
         when(action) {
@@ -53,6 +60,8 @@ class CoinListViewModel(
                 }
                 .onError { error ->
                     _state.update { it.copy(isLoading = false) }
+                    _events.send(CoinListEvent.Error(error))
+
                 }
         }
     }

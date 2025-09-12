@@ -246,13 +246,13 @@ fun CryptoTrackerTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S /* Android 12 */ ->{
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> highContrastDarkColorScheme
-        else -> highContrastLightColorScheme
+        darkTheme -> darkScheme
+        else -> lightScheme
     }
 
     MaterialTheme(

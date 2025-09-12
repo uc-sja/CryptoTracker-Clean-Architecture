@@ -31,6 +31,8 @@ import com.shikhar.cryptochecker.crypto.domain.Coin
 import com.shikhar.cryptochecker.crypto.presentation.models.CoinUi
 import com.shikhar.cryptochecker.crypto.presentation.models.toCoinUi
 import com.shikhar.cryptochecker.ui.theme.CryptoTrackerTheme
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 @Composable
 fun CoinListItem(
@@ -38,6 +40,9 @@ fun CoinListItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+
+
+
     val contentColor = if(isSystemInDarkTheme()) {
         Color.White
     } else {
@@ -106,7 +111,7 @@ fun CoinListItem(
 @PreviewLightDark
 @Composable
 private fun CoinListItemPreview() {
-    CryptoTrackerTheme {
+    CryptoTrackerTheme() {
         CoinListItem(
             coinUi = previewCoin,
             onClick = { /*TODO*/ },

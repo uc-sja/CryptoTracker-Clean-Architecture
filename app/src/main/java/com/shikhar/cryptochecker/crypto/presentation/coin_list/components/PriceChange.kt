@@ -67,9 +67,6 @@ fun PriceChange(
             fontWeight = FontWeight.Medium
         )
     }
-
-    val absOperator: UnaryOperator<Int?> = UnaryOperator { a: Int -> Math.abs(a) }
-
 }
 
 @PreviewLightDark
