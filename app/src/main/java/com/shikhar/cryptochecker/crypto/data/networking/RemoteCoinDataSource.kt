@@ -17,12 +17,21 @@ class RemoteCoinDataSource(
 ): CoinDataSource {
 
     override suspend fun getCoins(): Result<List<Coin>, NetworkError> {
-        return safeCall<CoinsResponseDto> {
+        //breaking code chains for better readability
+        val safeCall: Result<CoinsResponseDto, NetworkError> = safeCall<CoinsResponseDto> {
             httpClient.get(
                 urlString = constructUrl("/assets")
             )
-        }.map { response ->
-            response.data.map { it.toCoin() }
         }
+
+        val coinListResult: Result<List<Coin>, NetworkError> =
+            safeCall.map { response: CoinsResponseDto ->
+                val coinList: List<Coin> = response.data.map { it.toCoin() }
+                // The last expression in this lambda is its return value
+                coinList
+            }
+
+        return coinListResult
     }
+
 }
