@@ -15,7 +15,10 @@ inline fun <T, E: DomainError, R> Result<T, E>.map(map: (T) -> R): Result<R, E> 
 }
 
 fun <T, E: DomainError> Result<T, E>.asEmptyDataResult(): EmptyResult<E> {
-    return map {  }
+
+    //a lambda that ignores its argument and just returns Unit.
+    //Equivalent to: { _: T -> Unit }.
+    return map {_:T -> Unit  }
 }
 
 inline fun <T, E: DomainError> Result<T, E>.onSuccess(action: (T) -> Unit): Result<T, E> {
