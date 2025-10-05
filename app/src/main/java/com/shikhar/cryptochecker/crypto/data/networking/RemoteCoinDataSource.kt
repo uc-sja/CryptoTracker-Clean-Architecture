@@ -1,6 +1,5 @@
 package com.shikhar.cryptochecker.crypto.data.networking
 
-import android.net.Network
 import com.shikhar.cryptochecker.core.data.networking.constructUrl
 import com.shikhar.cryptochecker.core.data.networking.safeCall
 import com.shikhar.cryptochecker.core.domain.util.NetworkError
@@ -25,14 +24,14 @@ class RemoteCoinDataSource(
 
     override suspend fun getCoins(): Result<List<Coin>, NetworkError> {
         //breaking code chains for better readability
-        val safeCall: Result<CoinsResponseDto, NetworkError> = safeCall<CoinsResponseDto> {
+        val coinsResponseResult: Result<CoinsResponseDto, NetworkError> = safeCall<CoinsResponseDto> {
             httpClient.get(
                 urlString = constructUrl("/assets")
             )
         }
 
         val coinListResult: Result<List<Coin>, NetworkError> =
-            safeCall.map { response: CoinsResponseDto ->
+            coinsResponseResult.map { response: CoinsResponseDto ->
                 val coinList: List<Coin> = response.data.map { it.toCoin() }
                 // The last expression in this lambda is its return value
                 coinList
